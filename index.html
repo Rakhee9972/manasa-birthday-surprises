@@ -11,10 +11,10 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--dark);color:var(--cream);font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
 button{font:inherit}
-.video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
-.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,3,18,.38),rgba(12,4,20,.65) 55%,rgba(10,4,17,.88));z-index:-2}
-section{position:relative;isolation:isolate;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:76px 20px;overflow:hidden}
-.content{width:min(850px,100%);margin:auto}
+.video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2;display:block;background:#100817}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,3,18,.12),rgba(12,4,20,.22) 55%,rgba(10,4,17,.42));z-index:-1}
+section{position:relative;isolation:isolate;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:76px 20px;overflow:hidden;background:#100817}
+.content{position:relative;z-index:2;width:min(850px,100%);margin:auto}
 .kicker{letter-spacing:.22em;text-transform:uppercase;font:600 .75rem/1.6 Arial,sans-serif;color:var(--gold)}
 h1,h2{font-weight:normal;line-height:1.12;margin:.4em 0}
 h1{font-size:clamp(2.6rem,9vw,6.4rem);text-shadow:0 0 32px #ff9bbd66}
@@ -25,15 +25,14 @@ p{font-size:clamp(1rem,2.6vw,1.25rem);line-height:1.9}
 .countdown{display:grid;grid-template-columns:repeat(4,minmax(62px,1fr));gap:9px;max-width:600px;margin:28px auto}
 .timebox{padding:16px 5px;border:1px solid #ffe3ed40;border-radius:16px;background:#180b25a8;backdrop-filter:blur(8px)}
 .timebox strong{display:block;font:600 clamp(1.5rem,5vw,2.5rem)/1.2 Arial,sans-serif;color:#fff}
-.timebox span{font: .68rem Arial,sans-serif;letter-spacing:.12em;color:#f4c6d8}
-.note{font: .85rem/1.7 Arial,sans-serif;color:#e6cbd8}
+.timebox span{font:.68rem Arial,sans-serif;letter-spacing:.12em;color:#f4c6d8}
+.note{font:.85rem/1.7 Arial,sans-serif;color:#e6cbd8}
 .glow{animation:glow 3s ease-in-out infinite alternate}
 @keyframes glow{from{text-shadow:0 0 8px #ff83b566}to{text-shadow:0 0 34px #ff83b5,0 0 70px #ff83b544}}
-#birthday{display:none}
-#birthday.show{display:block}
+#birthday{display:block}
 #birthday .scene{min-height:90svh}
-.scene .video-bg{filter:saturate(.88)}
-.card{background:rgba(20,8,29,.72);border:1px solid #ffdce733;border-radius:24px;padding:clamp(22px,5vw,44px);backdrop-filter:blur(9px);box-shadow:0 20px 80px #0005}
+.scene .video-bg{filter:saturate(1.08) brightness(1.08)}
+.card{background:rgba(20,8,29,.52);border:1px solid #ffdce733;border-radius:24px;padding:clamp(22px,5vw,44px);backdrop-filter:blur(9px);box-shadow:0 20px 80px #0005}
 .letter{text-align:left;white-space:pre-line}
 .wishes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:26px}
 .wish{border:1px solid #ffdce733;background:#210e2d9c;border-radius:18px;padding:22px}
@@ -44,7 +43,7 @@ p{font-size:clamp(1rem,2.6vw,1.25rem);line-height:1.9}
 @keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(600deg);opacity:.08}}
 .cta{display:inline-block;margin-top:18px;padding:13px 22px;border-radius:999px;border:1px solid #ffb8d2;background:linear-gradient(135deg,#6e2d60,#a43e72);color:white;text-decoration:none;cursor:pointer;box-shadow:0 8px 30px #ff76b52b}
 footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
-.small{font: .82rem/1.7 Arial,sans-serif;color:#e7cdd9}
+.small{font:.82rem/1.7 Arial,sans-serif;color:#e7cdd9}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -52,10 +51,10 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
 <div class="petals" id="petals" aria-hidden="true"></div>
 
 <section id="opening">
-  <video class="video-bg" autoplay muted loop playsinline preload="metadata">
+  <video class="video-bg" autoplay muted loop playsinline preload="auto">
     <source src="moon-effect.mp4" type="video/mp4">
   </video>
-  <video class="video-bg" autoplay muted loop playsinline preload="metadata" style="opacity:.27;mix-blend-mode:screen">
+  <video class="video-bg" autoplay muted loop playsinline preload="auto" style="opacity:.27;mix-blend-mode:screen">
     <source src="smoke-effect.mp4" type="video/mp4">
   </video>
   <div class="shade"></div>
@@ -70,9 +69,9 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
 </section>
 
 <main id="birthday">
-  <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="fireworks-night.mp4" type="video/mp4"></video>
-    <div class="shade" style="background:linear-gradient(180deg,#10081755,#100817b8)"></div>
+  <section class="scene" id="birthday-start">
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="fireworks-night.mp4" type="video/mp4"></video>
+    <div class="shade" style="background:linear-gradient(180deg,rgba(16,8,23,.08),rgba(16,8,23,.24))"></div>
     <div class="content">
       <div class="kicker">Today is all about you</div>
       <h1 class="glow">Happy Birthday,<br><span class="script">Manasa ❤️</span></h1>
@@ -83,7 +82,7 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="candle-glow.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="candle-glow.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">Make a wish, beautiful soul</div>
@@ -94,7 +93,7 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
   </section>
 
   <section class="scene" id="letter">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="rose-waterdrops.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="rose-waterdrops.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">A letter from my heart</div>
@@ -113,7 +112,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="boat-sunset.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="boat-sunset.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content">
       <div class="kicker">A few wishes, just for you</div>
@@ -127,7 +126,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="stars-space.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="stars-space.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">Across every star and every sky</div>
@@ -138,7 +137,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="clock-round.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="clock-round.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">If I could wish for one thing</div>
@@ -148,7 +147,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="swan-lake.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="swan-lake.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content">
       <div class="kicker">One last thing, birthday girl</div>
@@ -163,12 +162,8 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
 </main>
 
 <footer>Made with love ❤️ Rakhee · For Manasa</footer>
+
 <script>
-/* TEST MODE: the birthday page opens immediately, with no date lock.
-   After checking the site, replace this with the timed unlock version. */
-const birthday = document.getElementById('birthday');
-const opening = document.getElementById('opening');
-birthday.classList.add('show');
 const petals=document.getElementById('petals');
 const symbols=['🌸','💗','✨','🌹'];
 function petal(){
@@ -185,4 +180,4 @@ function petal(){
 setInterval(()=>{if(!document.hidden)petal()},850);
 </script>
 </body>
-  </html>
+</html>
