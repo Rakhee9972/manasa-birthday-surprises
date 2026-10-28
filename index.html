@@ -25,11 +25,12 @@ p{font-size:clamp(1rem,2.6vw,1.25rem);line-height:1.9}
 .countdown{display:grid;grid-template-columns:repeat(4,minmax(62px,1fr));gap:9px;max-width:600px;margin:28px auto}
 .timebox{padding:16px 5px;border:1px solid #ffe3ed40;border-radius:16px;background:#180b25a8;backdrop-filter:blur(8px)}
 .timebox strong{display:block;font:600 clamp(1.5rem,5vw,2.5rem)/1.2 Arial,sans-serif;color:#fff}
-.timebox span{font:.68rem Arial,sans-serif;letter-spacing:.12em;color:#f4c6d8}
-.note{font:.85rem/1.7 Arial,sans-serif;color:#e6cbd8}
+.timebox span{font: .68rem Arial,sans-serif;letter-spacing:.12em;color:#f4c6d8}
+.note{font: .85rem/1.7 Arial,sans-serif;color:#e6cbd8}
 .glow{animation:glow 3s ease-in-out infinite alternate}
 @keyframes glow{from{text-shadow:0 0 8px #ff83b566}to{text-shadow:0 0 34px #ff83b5,0 0 70px #ff83b544}}
-#birthday{display:block}
+#birthday{display:none}
+#birthday.show{display:block}
 #birthday .scene{min-height:90svh}
 .scene .video-bg{filter:saturate(1.08) brightness(1.08)}
 .card{background:rgba(20,8,29,.52);border:1px solid #ffdce733;border-radius:24px;padding:clamp(22px,5vw,44px);backdrop-filter:blur(9px);box-shadow:0 20px 80px #0005}
@@ -43,7 +44,7 @@ p{font-size:clamp(1rem,2.6vw,1.25rem);line-height:1.9}
 @keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(600deg);opacity:.08}}
 .cta{display:inline-block;margin-top:18px;padding:13px 22px;border-radius:999px;border:1px solid #ffb8d2;background:linear-gradient(135deg,#6e2d60,#a43e72);color:white;text-decoration:none;cursor:pointer;box-shadow:0 8px 30px #ff76b52b}
 footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
-.small{font:.82rem/1.7 Arial,sans-serif;color:#e7cdd9}
+.small{font: .82rem/1.7 Arial,sans-serif;color:#e7cdd9}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -62,15 +63,22 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
     <div class="kicker">A little universe made for you</div>
     <div class="big-heart">♡</div>
     <h1 class="glow">For Manasa <span class="script">❤️</span></h1>
-    <p class="script">A little surprise, made with love.</p>
-    <p><a class="cta" href="#birthday-start">Enter your birthday surprise ↓</a></p>
+    <p class="script">Some surprises are worth waiting for…</p>
+    <div class="pill">Your special moment begins on 11 November 2026 at 6:00 AM IST</div>
+    <div class="countdown" id="countdown">
+      <div class="timebox"><strong id="days">00</strong><span>DAYS</span></div>
+      <div class="timebox"><strong id="hours">00</strong><span>HOURS</span></div>
+      <div class="timebox"><strong id="minutes">00</strong><span>MINUTES</span></div>
+      <div class="timebox"><strong id="seconds">00</strong><span>SECONDS</span></div>
+    </div>
+    <p class="note" id="lockText">Keep this little secret close to your heart. ❤️</p>
     <p class="small">Made with love by Rakhee ❤️</p>
   </div>
 </section>
 
 <main id="birthday">
-  <section class="scene" id="birthday-start">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="fireworks-night.mp4" type="video/mp4"></video>
+  <section class="scene">
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="fireworks-night.mp4" type="video/mp4"></video>
     <div class="shade" style="background:linear-gradient(180deg,rgba(16,8,23,.08),rgba(16,8,23,.24))"></div>
     <div class="content">
       <div class="kicker">Today is all about you</div>
@@ -82,7 +90,7 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="candle-glow.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="candle-glow.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">Make a wish, beautiful soul</div>
@@ -93,7 +101,7 @@ footer{padding:36px 16px;text-align:center;color:#d8b7c9;font-size:.9rem}
   </section>
 
   <section class="scene" id="letter">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="rose-waterdrops.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="rose-waterdrops.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">A letter from my heart</div>
@@ -112,7 +120,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="boat-sunset.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="boat-sunset.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content">
       <div class="kicker">A few wishes, just for you</div>
@@ -126,7 +134,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="stars-space.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="stars-space.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">Across every star and every sky</div>
@@ -137,7 +145,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="clock-round.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="clock-round.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content card">
       <div class="kicker">If I could wish for one thing</div>
@@ -147,7 +155,7 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
   </section>
 
   <section class="scene">
-    <video class="video-bg" autoplay muted loop playsinline preload="auto"><source src="swan-lake.mp4" type="video/mp4"></video>
+    <video class="video-bg" autoplay muted loop playsinline preload="metadata"><source src="swan-lake.mp4" type="video/mp4"></video>
     <div class="shade"></div>
     <div class="content">
       <div class="kicker">One last thing, birthday girl</div>
@@ -162,22 +170,45 @@ Happy Birthday, Manasa. Nuvvu eppudu navvuthu, nee own beautiful way lo shine av
 </main>
 
 <footer>Made with love ❤️ Rakhee · For Manasa</footer>
-
 <script>
-const petals=document.getElementById('petals');
-const symbols=['🌸','💗','✨','🌹'];
-function petal(){
-  const e=document.createElement('span');
-  e.className='petal';
-  e.textContent=symbols[Math.floor(Math.random()*symbols.length)];
-  e.style.left=Math.random()*100+'vw';
-  e.style.fontSize=(12+Math.random()*14)+'px';
-  e.style.setProperty('--drift',(Math.random()*150-75)+'px');
-  e.style.animationDuration=(7+Math.random()*7)+'s';
-  petals.appendChild(e);
-  setTimeout(()=>e.remove(),15000);
+/* Birthday unlock: 11 November 2026, 6:00 AM India Standard Time (IST). */
+const target = new Date('2026-11-11T06:00:00+05:30').getTime();
+const birthday = document.getElementById('birthday');
+const opening = document.getElementById('opening');
+const preview = new URLSearchParams(location.search).get('preview') === '1';
+
+function unlockBirthday() {
+  opening.style.display = 'none';
+  birthday.classList.add('show');
 }
-setInterval(()=>{if(!document.hidden)petal()},850);
+function updateCountdown() {
+  const remaining = target - Date.now();
+  if (remaining <= 0 || preview) {
+    unlockBirthday();
+    return;
+  }
+  document.getElementById('days').textContent = String(Math.floor(remaining / 86400000)).padStart(2, '0');
+  document.getElementById('hours').textContent = String(Math.floor((remaining % 86400000) / 3600000)).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+const petals = document.getElementById('petals');
+const symbols = ['🌸', '💗', '✨', '🌹'];
+function petal() {
+  const e = document.createElement('span');
+  e.className = 'petal';
+  e.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  e.style.left = Math.random() * 100 + 'vw';
+  e.style.fontSize = (12 + Math.random() * 14) + 'px';
+  e.style.setProperty('--drift', (Math.random() * 150 - 75) + 'px');
+  e.style.animationDuration = (7 + Math.random() * 7) + 's';
+  petals.appendChild(e);
+  setTimeout(() => e.remove(), 15000);
+}
+setInterval(() => { if (!document.hidden) petal(); }, 850);
 </script>
 </body>
-</html>
+  </html>
